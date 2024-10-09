@@ -1,0 +1,112 @@
+----------------------------------------------------------------------------------
+-- Company: FCEIA - UNR
+-- Engineer: Gonzalez Targon, Joaquin
+-- 
+-- Create Date:    11:59:09 10/06/2024 
+-- Design Name: 		Trabajo practico 1
+-- Module Name:    Entidad - Behavioral 
+-- Project Name: 	Implementacion de Red de Petri en VHDL
+-- Description: Al apretar un pulsados (P1 o P2) se prenda la lampara L luego de pasado 5 segundos, al apretar el otro pulsador se apague pasado 5 segundos
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity Entidad is
+    Port ( Reloj : in  STD_LOGIC;
+           Reset : in  STD_LOGIC;
+           P1 : in  STD_LOGIC;
+           P2 : in  STD_LOGIC;
+           L : out  STD_LOGIC);
+end Entidad;
+
+architecture Behavioral of Entidad is
+signal Tr1,Tr2,Tr3,Tr4,Tr5,Tr6,Tr7,Tr8,Tr9,Tr10,Tr11,Tr12,Tr13,Tr14,Tr15,Tr16,Tr17,Tr18, Tr19,Tr20,Tr21,Tr22,Tr23:std_logic; --Transiciones a definir
+signal Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14:std_logic; -- Lugares
+
+--Temporizador (es interno, no se define en la entidad)
+signal Ct5,Ft5:std_logic;
+signal cuenta: integer range 0 to 8;
+begin
+
+-------Transicion a disparar (combinacional) -------------------
+Tr1 <= Q1 and (not P1) and (not P2);
+Tr2 <= Q2 and P1;
+Tr3 <= Q3 and (not P1);
+Tr4 <= Q4 and Ft5;
+Tr5 <= Q3 and Ft5;
+Tr6 <= Q5 and P2;
+Tr7 <= Q7 and (not P2);
+Tr8 <= Q8 and P2;
+Tr9 <= Q6 and (not P2);
+Tr10 <= Q7 and Ft5;
+Tr11 <= Q8 and Ft5;
+Tr12 <= Q2 and P2 and (not P1);
+Tr13 <= Q9 and Ft5;
+Tr14 <= Q9 and (not P2);
+Tr15 <= Q10 and Ft5;
+Tr16 <= Q11 and P1;
+Tr17 <= Q13 and (not P1);
+Tr18 <= Q13 and Ft5;
+Tr19 <= Q14 and Ft5;
+Tr20 <= Q14 and P1;
+Tr21 <= Q12 and (not P1);
+Tr22 <= Q4 and P1;
+Tr23 <= Q10 and P2;
+-------Marcado y desmarcado de lugares (secuencial)---------
+process (Reset, Reloj)
+	begin
+	--Marcado inicial--
+	if Reset = '1' then
+		Q1 <= '1'; Q2 <= '0'; Q3 <= '0'; Q4 <= '0'; Q5 <= '0'; Q6 <= '0'; Q7 <= '0'; Q8 <= '0'; Q9 <= '0'; Q10 <= '0'; Q11 <= '0'; Q12 <= '0'; Q13 <= '0'; Q14 <= '0';  --Completar los que faltan
+	-- Evolucion sincronica
+	elsif (reloj'event and reloj='1') then
+		if Tr1= '1' then Q1 <= '0' ; Q2 <= '1'; end if;
+		if Tr2= '1' then Q2 <= '0' ; Q3 <= '1'; end if;
+		if Tr3= '1' then Q3 <= '0' ; Q4 <= '1'; end if;
+		if Tr4= '1' then Q4 <= '0' ; Q5 <= '1'; end if;
+		if Tr5= '1' then Q3 <= '0' ; Q5 <= '1'; end if;
+		if Tr6= '1' then Q5 <= '0' ; Q7 <= '1'; end if;
+		if Tr7= '1' then Q7 <= '0' ; Q8 <= '1'; end if;
+		if Tr8= '1' then Q8 <= '0' ; Q6 <= '1'; end if;
+		if Tr9= '1' then Q6 <= '0' ; Q5 <= '1'; end if;
+		if Tr10= '1' then Q7 <= '0' ; Q1 <= '1'; end if;
+		if Tr11= '1' then Q8 <= '0' ; Q1 <= '1'; end if;
+		if Tr12= '1' then Q2 <= '0' ; Q9 <= '1'; end if;
+		if Tr13= '1' then Q9 <= '0' ; Q11 <= '1'; end if;
+		if Tr14= '1' then Q9 <= '0' ; Q10 <= '1'; end if;
+		if Tr15= '1' then Q10 <= '0' ; Q11 <= '1'; end if;
+		if Tr16= '1' then Q11 <= '0' ; Q13 <= '1'; end if;
+		if Tr17= '1' then Q13 <= '0' ; Q14 <= '1'; end if;
+		if Tr18= '1' then Q13 <= '0' ; Q1 <= '1'; end if;
+		if Tr19= '1' then Q14 <= '0' ; Q1 <= '1'; end if;
+		if Tr20= '1' then Q14 <= '0' ; Q12 <= '1'; end if;
+		if Tr21= '1' then Q12 <= '0' ; Q11 <= '1'; end if;
+		if Tr22= '1' then Q4 <= '0' ; Q1 <= '1'; end if;
+		if Tr23= '1' then Q10 <= '0' ; Q1 <= '1'; end if;
+		
+	end if;
+end process;
+
+---------Salidas (combinacional)-----------------
+Ct5 <= Q3 or Q4 or Q6 or Q7 or Q8 or Q9 or Q10 or Q12 or Q13 or Q14; 
+L <= Q5 or Q6 or Q7 or Q8 or Q11 or Q12 or Q13 or Q14;
+---------Temporizador-----------
+process (reloj, reset)
+	begin
+	if Reset='1' then Ft5 <= '0'; cuenta <=0;
+	elsif (Reloj'event and Reloj='1') then
+		if Ct5 = '1' then 
+			if (cuenta <= 2) then cuenta <= cuenta +1; Ft5<= '0'; -- 5 bit-time
+			else cuenta <= 0; Ft5 <='1';
+			end if;
+		end if;
+	end if;
+	if Ct5 = '0' then cuenta <= 0; Ft5 <= '0'; -- Agrego que si sale del lugar de la cuenta que se reinicie la cuenta
+	end if;
+end process;
+
+
+end Behavioral;
+
