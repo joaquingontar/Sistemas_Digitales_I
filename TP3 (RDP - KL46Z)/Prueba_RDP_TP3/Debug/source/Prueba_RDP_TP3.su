@@ -1,0 +1,12 @@
+../source/Inits_RDP_TP3.h:26:6:board_init	8	static
+../source/Inits_RDP_TP3.h:55:8:pulsadorSw3_get	8	static
+../source/Inits_RDP_TP3.h:59:8:pulsadorSw1_get	8	static
+../source/Inits_RDP_TP3.h:65:6:init_clock_MCGIRCLK	8	static
+../source/Inits_RDP_TP3.h:74:6:SysTick_Init	8	static
+../source/Inits_RDP_TP3.h:84:6:SysTick_Handler	8	static
+../source/Inits_RDP_TP3.h:88:6:Systick_Reset	8	static
+../source/Prueba_RDP_TP3.c:21:6:RDP	48	static
+../source/Prueba_RDP_TP3.c:88:6:Prueba_Systick	16	static
+../source/Prueba_RDP_TP3.c:107:6:RDP_ST	40	static
+../source/Prueba_RDP_TP3.c:155:6:prueba_LED	8	static
+../source/Prueba_RDP_TP3.c:182:5:main	8	static

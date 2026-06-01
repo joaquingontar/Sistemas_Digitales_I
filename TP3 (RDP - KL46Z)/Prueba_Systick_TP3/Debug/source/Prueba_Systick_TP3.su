@@ -1,0 +1,10 @@
+../source/Inits_Systick.h:26:6:board_init	8	static
+../source/Inits_Systick.h:55:8:pulsadorSw3_get	8	static
+../source/Inits_Systick.h:59:8:pulsadorSw1_get	8	static
+../source/Inits_Systick.h:65:6:init_clock_MCGIRCLK	8	static
+../source/Inits_Systick.h:75:6:SysTick_Init	8	static
+../source/Inits_Systick.h:85:6:SysTick_Poll	8	static
+../source/Inits_Systick.h:92:6:Systick_Reset	8	static
+../source/Prueba_Systick_TP3.c:21:6:RDP	48	static
+../source/Prueba_Systick_TP3.c:88:6:Prueba_Systick	16	static
+../source/Prueba_Systick_TP3.c:109:5:main	8	static

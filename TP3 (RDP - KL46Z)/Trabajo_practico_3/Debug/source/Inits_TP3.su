@@ -1,0 +1,17 @@
+C:\Users\joaqu\Desktop\Digitales 1\Parcial 3\MCU\Trabajo_practico_3\CMSIS/core_cm0plus.h:733:22:__NVIC_EnableIRQ	16	static
+C:\Users\joaqu\Desktop\Digitales 1\Parcial 3\MCU\Trabajo_practico_3\CMSIS/core_cm0plus.h:840:22:__NVIC_SetPriority	24	static
+../source/Inits_TP3.c:14:6:board_init	8	static
+../source/Inits_TP3.c:39:8:pulsadorSw3_get	8	static
+../source/Inits_TP3.c:43:8:pulsadorSw1_get	8	static
+../source/Inits_TP3.c:47:6:init_clock_MCGIRCLK	8	static
+../source/Inits_TP3.c:58:6:SysTick_Init	8	static
+../source/Inits_TP3.c:65:6:Systick_Reset	8	static
+../source/Inits_TP3.c:70:6:SysTick_Handler	8	static
+../source/Inits_TP3.c:74:6:Manejo_cuenta	8	static
+../source/Inits_TP3.c:92:6:PIT_init	8	static
+../source/Inits_TP3.c:103:6:PIT_IRQHandler	8	static
+../source/Inits_TP3.c:118:6:ADC_init	8	static
+../source/Inits_TP3.c:144:6:ADC_luz	16	static
+../source/Inits_TP3.c:162:6:ADC_temp	24	static
+../source/Inits_TP3.c:183:6:ADC0_IRQHandler	8	static
+../source/Inits_TP3.c:206:6:init_PWM	16	static

@@ -1,0 +1,5 @@
+../source/Main_TP3.c:16:6:ADC_luz	16	static
+../source/Main_TP3.c:34:6:ADC_temp	16	static
+../source/Main_TP3.c:55:6:Manejo_cuenta	8	static
+../source/Main_TP3.c:68:6:RDP	48	static
+../source/Main_TP3.c:121:5:main	8	static
